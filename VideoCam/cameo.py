@@ -12,11 +12,11 @@ ON initializing, a Cameo object created a WindowManager object with onKeypress a
 
 """
 class Cameo(object):
-    
+
     def __init__(self):
         self._windowManager = WindowManager('Cameo',self.onKeypress)
         self._captureManager = CaptureManager(cv2.VideoCapture(0), self._windowManager, True)
-        self._curveFilter = filters.FindEdgesFilter()
+        self._curveFilter = filters.testFilter()
 
     def run(self):
         """Run the main loop."""

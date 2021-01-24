@@ -77,3 +77,10 @@ class EmbossFilter(VConvolutionFilter): #Emboss filter with a 1-pixel radius
                            [-1, 1,1],
                            [ 0, 1,2]])
         VConvolutionFilter.__init__(self, kernel)
+
+class testFilter(VConvolutionFilter):
+    def __init__(self):
+        kernel = np.array([[0, 1,0],
+                           [1,-4,1],
+                           [0, 1,0]])
+        VConvolutionFilter.__init__(self,kernel)

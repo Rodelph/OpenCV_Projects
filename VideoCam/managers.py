@@ -178,10 +178,8 @@ class CaptureManager(object):
                     return
                 else:
                     fps = self._fpsEstimate
-            size = (int(self._capture.get(
-                        cv2.CAP_PROP_FRAME_WIDTH)),
-                    int(self._capture.get(
-                        cv2.CAP_PROP_FRAME_HEIGHT)))
+            size = (int(self._capture.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                    int(self._capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
             self._videoWriter = cv2.VideoWriter(
                 self._videoFilename, self._videoEncoding,
                 fps, size)
@@ -193,10 +191,8 @@ class CaptureManager(object):
 # is called from processEvents in response to any keypress. The keypressCallback object is a function that takes a single argument, specifically an ASCII keycode.
 
 class WindowManager(object):
-    
     def __init__(self, windowName, keypressCallback = None):
         self.keypressCallback = keypressCallback
-        
         self._windowName = windowName
         self._isWindowCreated = False
 
