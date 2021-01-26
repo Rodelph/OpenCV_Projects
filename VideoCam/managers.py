@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import time
+import depth
 """
 We create a class called CaptureManager and WindowManager as high-level interfaces to I/O streams. This applicaiton code may use CaptureManager to read
 new frames and optionally, to dispatch each frame to one or more outputs, including a still image file, and a window (wia a WindowManager class). 
@@ -25,10 +26,12 @@ if we deploy to unknown hardware, it is better than just assuming that the user'
 """
 class CaptureManager(object):
     
-    def __init__(self, capture, previewWindowManager = None, shouldMirrorPreview = False):
+    def __init__(self, capture, previewWindowManager = None, shouldMirrorPreview = False, shouldConvertBitDepth10To8 = True):
         
         self.previewWindowManager = previewWindowManager
         self.shouldMirrorPreview = shouldMirrorPreview
+        self.shouldConvertBitDepth10To8 = \
+                shouldConvertBitDepth10To8
         self._capture = capture         #Non public variable
         self._channel = 0               #Non public variable
         self._enteredFrame = False      #Non public variable
@@ -62,9 +65,15 @@ class CaptureManager(object):
     @property
     def frame(self):
         if self._enteredFrame and self._frame is None:
-            _, self._frame = self._capture.retrieve(self._frame, self.channel)
+            _, self._frame = self._capture.retrieve(
+                    self._frame, self.channel)
+    #The second if statement will help us manipulate and display frames form some channels, notably cv2.CAP_OPENNI_IR_IMAGE.
+            if self.shouldConvertBitDepth10To8 and \
+                    self._frame is not None and \
+                    self._frame.dtype == np.uint16:
+                self._frame = (self._frame >> 2).astype(numpy.uint8)
         return self._frame
-    
+
     @property
     def isWritingImage(self):
         return self._imageFilename is not None
@@ -181,8 +190,7 @@ class CaptureManager(object):
             size = (int(self._capture.get(cv2.CAP_PROP_FRAME_WIDTH)),
                     int(self._capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
             self._videoWriter = cv2.VideoWriter(
-                self._videoFilename, self._videoEncoding,
-                fps, size)
+                self._videoFilename, self._videoEncoding, fps, size)
         
         self._videoWriter.write(self._frame)
 

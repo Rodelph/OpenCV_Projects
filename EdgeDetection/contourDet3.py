@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-"""
+
 img = cv2.imread("eye.jpg")
 img = cv2.resize(img, (720, 480),interpolation= cv2.INTER_AREA)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -17,21 +17,21 @@ cv2.imshow("edges", edges)
 cv2.imshow("lines", img)
 cv2.waitKey()
 cv2.destroyAllWindows()
-"""
 
-img = cv2.imread("eye.jpg")
-img = cv2.resize(img, (720, 480),interpolation= cv2.INTER_AREA)
-gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+img1 = cv2.imread("eye.jpg")
+img1 = cv2.resize(img, (720, 480),interpolation= cv2.INTER_AREA)
+gray_img = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 gray_img = cv2.medianBlur(gray_img, 5)
 circles = cv2.HoughCircles(gray_img, cv2.HOUGH_GRADIENT, 1, 120, param1= 100, param2= 30, minRadius= 0, maxRadius= 0)
 circles = np.uint16(np.around(circles))
 for i in circles[0,:]:
     #draw outer circle
-    cv2.circle(img, (i[0],i[1]),i[2], (0,255,0), 2)
+    cv2.circle(img1, (i[0],i[1]),i[2], (0,255,0), 2)
     #draw the center of the circle 
-    cv2.circle(img, (i[0],i[1]), 2, (0,0,255), 3)
+    cv2.circle(img1, (i[0],i[1]), 2, (0,0,255), 3)
 
-cv2.imwrite("Eye_Circle_Detection.jpg", img)
-cv2.imshow("HoughCircles", img)
+cv2.imwrite("Eye_Circle_Detection.jpg", img1)
+cv2.imshow("HoughCircles", img1)
 cv2.waitKey()
 cv2.destroyAllWindows()
