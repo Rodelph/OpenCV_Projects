@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-img = cv2.imread("eye.jpg")
+img = cv2.imread("./res/eye.jpg")
 img = cv2.resize(img, (720, 480),interpolation= cv2.INTER_AREA)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 edges = cv2.Canny(gray, 50, 120)
@@ -19,8 +19,8 @@ cv2.waitKey()
 cv2.destroyAllWindows()
 
 
-img1 = cv2.imread("eye.jpg")
-img1 = cv2.resize(img, (720, 480),interpolation= cv2.INTER_AREA)
+img1 = cv2.imread("./res/eye.jpg")
+img1 = cv2.resize(img1, (720, 480),interpolation= cv2.INTER_AREA)
 gray_img = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 gray_img = cv2.medianBlur(gray_img, 5)
 circles = cv2.HoughCircles(gray_img, cv2.HOUGH_GRADIENT, 1, 120, param1= 100, param2= 30, minRadius= 0, maxRadius= 0)

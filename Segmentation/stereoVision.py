@@ -26,8 +26,8 @@ stereo = cv2.StereoSGBM_create(
     P2 = P2
 )
 
-imgL = cv2.imread("./1.jpg")
-imgR = cv2.imread("./2.jpg")
+imgL = cv2.imread("./res/1.jpg")
+imgR = cv2.imread("./res/2.jpg")
 
 #Adding sliders to interact with the adjustment of the parameters of the algorithm
 

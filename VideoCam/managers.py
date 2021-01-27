@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import time
-import depth
+
 """
 We create a class called CaptureManager and WindowManager as high-level interfaces to I/O streams. This applicaiton code may use CaptureManager to read
 new frames and optionally, to dispatch each frame to one or more outputs, including a still image file, and a window (wia a WindowManager class). 

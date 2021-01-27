@@ -17,7 +17,7 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-original = cv2.imread("./1.jpg")
+original = cv2.imread("./res/1.jpg")
 img = original.copy()
 mask = np.zeros(img.shape[:2], np.uint8)
 
