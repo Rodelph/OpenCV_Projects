@@ -1,17 +1,30 @@
 import os
 import cv2
 
+# Insert a Name for the person so that he can be identified by the program in the terminal.
+
 Name = input("Please enter your full name : ")
+
+# The inserted name is going to be used to created a folder where the images are going to be stored.
+  
 output_folder = './recog_Rsc/' + Name
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
-face_cascade = cv2.CascadeClassifier('./haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('./haarcascade_eye.xml')
+# Creating a variables using the CascadeClassifier method from OpenCV, and using the haarcascade_frontalface xml, as well as 
+# the haarcascade eye xml files.
+
+face_cascade = cv2.CascadeClassifier('./xml/haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('./xml/haarcascade_eye.xml')
+
+# Initializing the camera variable that holds the index of our webcam, as well as two integers for counting purposes.
 
 camera = cv2.VideoCapture(0)
 count = 0
 i = 0
+
+# Creating a loop where we are going to use all the variable that we already declared in order to store the image frame that are being captured
+# by the webcam. 
 
 while(cv2.waitKey(1) == -1):
     success, frame = camera.read()

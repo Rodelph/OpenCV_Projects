@@ -1,6 +1,4 @@
-import cv2
 import numpy as np
-import matplotlib as mtp
 
 """
 To identify outliers in the disparity map, we first find the median using np.median which takes an array as an argument. If the array is of an odd length,

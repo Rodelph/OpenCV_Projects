@@ -121,8 +121,8 @@ class CameoFaceDet(Cameo):
 
         # We initialize two CascadeClassifier objects, one for faces and another for eyes 
 
-        self.face_cascade = cv2.CascadeClassifier('./haarcascade_frontalface_default.xml')
-        self.eye_cascade = cv2.CascadeClassifier('./haarcascade_eye.xml')
+        self.face_cascade = cv2.CascadeClassifier('./xml/haarcascade_frontalface_default.xml')
+        self.eye_cascade = cv2.CascadeClassifier('./xml/haarcascade_eye.xml')
 
         # As in most of our interactive scripts, we open a camera feed and start iterating over frames. We continue until the usser presses the keys 
 
@@ -178,6 +178,6 @@ class CameoFaceDet(Cameo):
             self._windowManager.destroyWindow()
 
 if __name__ == "__main__":
-    Cameo().run()
-    #CameoDepth().run()
+    #Cameo().run()
+    CameoDepth().run()
     #CameoFaceDet().run()

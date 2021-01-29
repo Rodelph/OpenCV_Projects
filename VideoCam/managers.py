@@ -71,7 +71,7 @@ class CaptureManager(object):
             if self.shouldConvertBitDepth10To8 and \
                     self._frame is not None and \
                     self._frame.dtype == np.uint16:
-                self._frame = (self._frame >> 2).astype(numpy.uint8)
+                self._frame = (self._frame >> 2).astype(np.uint8)
         return self._frame
 
     @property
