@@ -28,6 +28,8 @@ def read_images(path, image_size):
                 global resultTrainImg
                 resultTrainImg = i
             label += 1
+            global total
+            total = label
     training_images = np.asarray_chkfinite(training_images, np.uint8)
     training_labels = np.asarray_chkfinite(training_labels, np.int32)
     return names, training_images, training_labels
@@ -35,8 +37,26 @@ def read_images(path, image_size):
 path_to_training_image = './recog_Rsc'
 training_image_size = (200,200)
 names, training_images, training_labels = read_images(path_to_training_image,training_image_size)
-model = cv2.face.EigenFaceRecognizer_create()
-model.train(training_images, training_labels)
+
+trainModel = input("Do you want yo use the LBPH algorithm or the Eigen algorithm ? \nType 'LBPH' or 'Eigen' for whichever algorithm you want to use : ")
+
+while trainModel != "LBPH" or "Eigen":
+   
+    print("You have inserted the name of a non existant algorithm, please retype the correct one ! : ") 
+    trainModel = input("Enter the name of the algorithm : ")
+
+    if trainModel == "LBPH":
+        model = cv2.face.LBPHFaceRecognizer_create()
+        model.train(training_images, training_labels)
+        print("Please be patient while the images are being analyzed !")
+        break
+
+    elif trainModel == "Eigen":
+        model = cv2.face.EigenFaceRecognizer_create()
+        model.train(training_images, training_labels)
+        print("Please be patient while the images are being analyzed !")
+        break
+
 face_cascade = cv2.CascadeClassifier('./xml/haarcascade_frontalface_default.xml')
 camera = cv2.VideoCapture(0)
 camera.set(3,1260)

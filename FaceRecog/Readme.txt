@@ -7,3 +7,5 @@ After that the program is going to store the images (take as many as possible th
 After finishing the first part, you can then compile the second file faceTrainer.py so that the program processes your images, then recognises 
 each one of them.
 The compilation will take longer the more images are captured thus analysed by the program.
+
+Please use "pip install opencv-contrib-python" to use the facetrainer.py file.

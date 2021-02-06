@@ -22,3 +22,4 @@ evaluated for thruth and falsity. An output array of the same dimensions is retu
 argument is assigned to to the corrrespondig element in the output array. Conversely, wherever an element in the input aray os False, the where function's third 
 argument is assigned to the corresponding element in the outpyt array.  
 """
+
